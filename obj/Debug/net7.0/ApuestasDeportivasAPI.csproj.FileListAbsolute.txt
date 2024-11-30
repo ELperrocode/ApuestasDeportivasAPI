@@ -45,3 +45,4 @@ D:\Projects VS\ApuestasDeportivasAPI\obj\Debug\net7.0\refint\ApuestasDeportivasA
 D:\Projects VS\ApuestasDeportivasAPI\obj\Debug\net7.0\ApuestasDeportivasAPI.pdb
 D:\Projects VS\ApuestasDeportivasAPI\obj\Debug\net7.0\ApuestasDeportivasAPI.genruntimeconfig.cache
 D:\Projects VS\ApuestasDeportivasAPI\obj\Debug\net7.0\ref\ApuestasDeportivasAPI.dll
+D:\Projects VS\ApuestasDeportivasAPI\obj\Debug\net7.0\ApuestasDeportivasAPI.sourcelink.json

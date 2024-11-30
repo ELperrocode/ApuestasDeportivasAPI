@@ -13,15 +13,18 @@ public class PartidosController : ControllerBase
         _externalApiService = externalApiService;
     }
 
-    [HttpGet("{leagueId}")]
-    public async Task<ActionResult<IEnumerable<Partido>>> GetPartidos(string leagueId)
+    [HttpGet("leagues")]
+    public async Task<ActionResult<IEnumerable<Liga>>> GetLeagues()
     {
-        var partidos = await _externalApiService.GetPartidos(leagueId);
-        foreach (var partido in partidos)
-        {
-            partido.Odds = GenerateRandomOdds();
-        }
-        return Ok(partidos);
+        var leagues = await _externalApiService.GetLeagues();
+        return Ok(leagues);
+    }
+
+    [HttpGet("upcomingMatches/{leagueId}")]
+    public async Task<ActionResult<IEnumerable<Partido>>> GetUpcomingMatches(string leagueId)
+    {
+        var matches = await _externalApiService.GetUpcomingMatches(leagueId);
+        return Ok(matches);
     }
 
     private decimal GenerateRandomOdds()
