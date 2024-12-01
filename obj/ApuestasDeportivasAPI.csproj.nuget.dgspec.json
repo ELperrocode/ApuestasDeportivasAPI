@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Projects VS\\ApuestasDeportivasAPI\\ApuestasDeportivasAPI.csproj": {}
+    "C:\\Users\\Henry\\Desktop\\ApuestasDeportivasAPI\\ApuestasDeportivasAPI.csproj": {}
   },
   "projects": {
-    "D:\\Projects VS\\ApuestasDeportivasAPI\\ApuestasDeportivasAPI.csproj": {
+    "C:\\Users\\Henry\\Desktop\\ApuestasDeportivasAPI\\ApuestasDeportivasAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projects VS\\ApuestasDeportivasAPI\\ApuestasDeportivasAPI.csproj",
+        "projectUniqueName": "C:\\Users\\Henry\\Desktop\\ApuestasDeportivasAPI\\ApuestasDeportivasAPI.csproj",
         "projectName": "ApuestasDeportivasAPI",
-        "projectPath": "D:\\Projects VS\\ApuestasDeportivasAPI\\ApuestasDeportivasAPI.csproj",
+        "projectPath": "C:\\Users\\Henry\\Desktop\\ApuestasDeportivasAPI\\ApuestasDeportivasAPI.csproj",
         "packagesPath": "C:\\Users\\Henry\\.nuget\\packages\\",
-        "outputPath": "D:\\Projects VS\\ApuestasDeportivasAPI\\obj\\",
+        "outputPath": "C:\\Users\\Henry\\Desktop\\ApuestasDeportivasAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

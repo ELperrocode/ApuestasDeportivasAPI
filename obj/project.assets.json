@@ -1320,11 +1320,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects VS\\ApuestasDeportivasAPI\\ApuestasDeportivasAPI.csproj",
+      "projectUniqueName": "C:\\Users\\Henry\\Desktop\\ApuestasDeportivasAPI\\ApuestasDeportivasAPI.csproj",
       "projectName": "ApuestasDeportivasAPI",
-      "projectPath": "D:\\Projects VS\\ApuestasDeportivasAPI\\ApuestasDeportivasAPI.csproj",
+      "projectPath": "C:\\Users\\Henry\\Desktop\\ApuestasDeportivasAPI\\ApuestasDeportivasAPI.csproj",
       "packagesPath": "C:\\Users\\Henry\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects VS\\ApuestasDeportivasAPI\\obj\\",
+      "outputPath": "C:\\Users\\Henry\\Desktop\\ApuestasDeportivasAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -1440,7 +1440,7 @@
       "code": "NU1902",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "El paquete \"Swashbuckle.AspNetCore.SwaggerUI\" 6.2.3 tiene una vulnerabilidad de gravedad moderada conocida, https://github.com/advisories/GHSA-qrmm-w75w-3wpx",
+      "message": "Package 'Swashbuckle.AspNetCore.SwaggerUI' 6.2.3 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-qrmm-w75w-3wpx",
       "libraryId": "Swashbuckle.AspNetCore.SwaggerUI",
       "targetGraphs": [
         "net7.0"
@@ -1450,7 +1450,7 @@
       "code": "NU1903",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "El paquete \"System.Text.Json\" 7.0.2 tiene una vulnerabilidad de gravedad alta conocida, https://github.com/advisories/GHSA-hh2w-p6rv-4g7w",
+      "message": "Package 'System.Text.Json' 7.0.2 has a known high severity vulnerability, https://github.com/advisories/GHSA-hh2w-p6rv-4g7w",
       "libraryId": "System.Text.Json",
       "targetGraphs": [
         "net7.0"

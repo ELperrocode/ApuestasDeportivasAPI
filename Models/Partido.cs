@@ -12,5 +12,6 @@ public class Partido
     public string StrStatus { get; set; }
     public string StrHomeTeamBadge { get; set; }
     public string StrAwayTeamBadge { get; set; }
+    public string StrThumb { get; set; }
     public decimal Odds { get; set; }
 }

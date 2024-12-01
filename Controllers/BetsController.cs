@@ -14,27 +14,39 @@ public class BetsController : ControllerBase
     [HttpPost("place")]
     public async Task<ActionResult<Bet>> PlaceBet([FromBody] PlaceBetDto placeBetDto)
     {
-        var bet = await _betService.PlaceBet(placeBetDto.UserId, placeBetDto.MatchId, placeBetDto.Type, placeBetDto.Amount, placeBetDto.Odds);
+        var bet = await _betService.PlaceBet(placeBetDto.UserId, placeBetDto.Type, placeBetDto.Amount, placeBetDto.Odds);
         return Ok(bet);
     }
 
-    [HttpPost("update-status")]
-    public async Task<ActionResult<Bet>> UpdateBetStatus([FromBody] UpdateBetStatusDto updateBetStatusDto)
+      [HttpPost("validate/{betId}")]
+    public async Task<ActionResult<Bet>> ValidateBet(int betId)
     {
-        var bet = await _betService.UpdateBetStatus(updateBetStatusDto.BetId, updateBetStatusDto.Status);
+        var bet = await _betService.UpdateBetStatus(betId);
         if (bet == null)
         {
             return NotFound();
         }
         return Ok(bet);
     }
+
+        [HttpGet("user/{userId}")]
+    public async Task<ActionResult<List<Bet>>> GetBetsByUser(int userId)
+    {
+        var bets = await _betService.GetBetsByUser(userId);
+        if (bets == null || bets.Count == 0)
+        {
+            return NotFound();
+        }
+        return Ok(bets);
+    }
+
+
 }
 
 public class PlaceBetDto
 {
     public int UserId { get; set; }
-    public int MatchId { get; set; }
-    public string Type { get; set; } // 'home', 'draw', 'away'
+    public string Type { get; set; } 
     public decimal Amount { get; set; }
     public decimal Odds { get; set; }
 }
