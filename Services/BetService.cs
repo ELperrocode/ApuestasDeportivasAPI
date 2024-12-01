@@ -10,7 +10,7 @@ public class BetService
         _context = context;
     }
 
-    public async Task<Bet> PlaceBet(int userId, string type, decimal amount, decimal odds)
+  public async Task<(Bet, decimal)> PlaceBet(int userId, string type, decimal amount, decimal odds)
     {
         var potential = amount * odds;
         var bet = new Bet
@@ -31,28 +31,44 @@ public class BetService
         // Restar el monto apostado de la wallet del usuario
         await UpdateUserWallet(userId, -amount);
 
-        return bet;
+        // Obtener el saldo actualizado del usuario
+        var user = await _context.Users.FindAsync(userId);
+        var updatedBalance = user.Wallet;
+
+        return (bet, updatedBalance);
     }
-
-    public async Task<Bet> UpdateBetStatus(int betId)
+    
+ public async Task<(List<Bet>, decimal)> UpdateBetStatus(int userId)
     {
-        var bet = await _context.Bets.FindAsync(betId);
-        if (bet != null && !bet.IsValidated)
-        {
-            // Randomizar el estado de la apuesta
-            var random = new Random();
-            var status = random.Next(2) == 0 ? "won" : "lost";
-            bet.Status = status;
-            bet.IsValidated = true;
+        var bets = await _context.Bets
+            .Where(bet => bet.UserId == userId && !bet.IsValidated)
+            .ToListAsync();
 
-            if (status == "won")
+        if (bets != null && bets.Count > 0)
+        {
+            var random = new Random();
+            foreach (var bet in bets)
             {
-                await UpdateUserWallet(bet.UserId, bet.Potential);
+                // Randomizar el estado de la apuesta
+                var status = random.Next(2) == 0 ? "won" : "lost";
+                bet.Status = status;
+                bet.IsValidated = true;
+
+                if (status == "won")
+                {
+                    await UpdateUserWallet(bet.UserId, bet.Potential);
+                }
             }
 
             await _context.SaveChangesAsync();
+
+            // Obtener el saldo actualizado del usuario
+            var user = await _context.Users.FindAsync(userId);
+            var updatedBalance = user.Wallet;
+
+            return (bets, updatedBalance);
         }
-        return bet;
+        return (new List<Bet>(), 0);
     }
 
     public async Task<List<Bet>> GetBetsByUser(int userId)
@@ -60,6 +76,12 @@ public class BetService
         return await _context.Bets
             .Where(bet => bet.UserId == userId)
             .ToListAsync();
+    }
+
+       public async Task<decimal> GetUserBalance(int userId)
+    {
+        var user = await _context.Users.FindAsync(userId);
+        return user?.Wallet ?? 0;
     }
     private async Task UpdateUserWallet(int userId, decimal amount)
     {

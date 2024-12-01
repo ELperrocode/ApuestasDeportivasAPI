@@ -10,24 +10,41 @@ public class BetsController : ControllerBase
     {
         _betService = betService;
     }
-
     [HttpPost("place")]
-    public async Task<ActionResult<Bet>> PlaceBet([FromBody] PlaceBetDto placeBetDto)
+    public async Task<ActionResult<BetResponseDto>> PlaceBet([FromBody] PlaceBetDto placeBetDto)
     {
-        var bet = await _betService.PlaceBet(placeBetDto.UserId, placeBetDto.Type, placeBetDto.Amount, placeBetDto.Odds);
-        return Ok(bet);
+        var (bet, updatedBalance) = await _betService.PlaceBet(placeBetDto.UserId, placeBetDto.Type, placeBetDto.Amount, placeBetDto.Odds);
+        var response = new BetResponseDto
+        {
+            Bet = bet,
+            UpdatedBalance = updatedBalance
+        };
+        return Ok(response);
     }
 
-      [HttpPost("validate/{betId}")]
-    public async Task<ActionResult<Bet>> ValidateBet(int betId)
+     [HttpPost("validate/{userId}")]
+    public async Task<ActionResult<BetResponseDto>> ValidateBets(int userId)
     {
-        var bet = await _betService.UpdateBetStatus(betId);
-        if (bet == null)
+        var (bets, updatedBalance) = await _betService.UpdateBetStatus(userId);
+        if (bets == null || bets.Count == 0)
         {
             return NotFound();
         }
-        return Ok(bet);
+        var response = new BetResponseDto
+        {
+            Bets = bets,
+            UpdatedBalance = updatedBalance
+        };
+        return Ok(response);
     }
+
+        [HttpGet("user/{userId}/balance")]
+    public async Task<ActionResult<decimal>> GetUserBalance(int userId)
+    {
+        var balance = await _betService.GetUserBalance(userId);
+        return Ok(balance);
+    }
+
 
         [HttpGet("user/{userId}")]
     public async Task<ActionResult<List<Bet>>> GetBetsByUser(int userId)
@@ -47,6 +64,12 @@ public class PlaceBetDto
     public string Type { get; set; } 
     public decimal Amount { get; set; }
     public decimal Odds { get; set; }
+}
+public class BetResponseDto
+{
+    public Bet Bet { get; set; }
+    public List<Bet> Bets { get; set; }
+    public decimal UpdatedBalance { get; set; }
 }
 
 public class UpdateBetStatusDto
