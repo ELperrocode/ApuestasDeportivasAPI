@@ -7,9 +7,6 @@ public class Partido
     public string StrLeague { get; set; }
     public string DateEvent { get; set; }
     public string StrTime { get; set; }
-    public string IntHomeScore { get; set; }
-    public string IntAwayScore { get; set; }
-    public string StrStatus { get; set; }
     public string StrHomeTeamBadge { get; set; }
     public string StrAwayTeamBadge { get; set; }
     public string StrThumb { get; set; }

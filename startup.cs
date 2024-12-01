@@ -19,6 +19,9 @@ public class Startup
         services.AddScoped<UserService>();
         services.AddScoped<BetService>();
         services.AddControllers();
+
+
+        
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

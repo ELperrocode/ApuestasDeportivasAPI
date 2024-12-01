@@ -39,8 +39,6 @@ public class BetsController : ControllerBase
         }
         return Ok(bets);
     }
-
-
 }
 
 public class PlaceBetDto

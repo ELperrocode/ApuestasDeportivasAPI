@@ -26,7 +26,7 @@ public class ExternalApiService
         return data["leagues"].FindAll(league => league.strSport == "Soccer") ?? new List<Liga>();
     }
 
-    public async Task<List<Partido>> GetUpcomingMatches(string leagueId)//Obtener los proximos partidos de la liga seleccionada
+   public async Task<List<Partido>> GetUpcomingMatches(string leagueId)
     {
         var currentYear = DateTime.Now.Year;
         var season = $"{currentYear}-{currentYear + 1}";
@@ -34,7 +34,16 @@ public class ExternalApiService
         response.EnsureSuccessStatusCode();
         var content = await response.Content.ReadAsStringAsync();
         var data = JsonConvert.DeserializeObject<Dictionary<string, List<Partido>>>(content);
-        return data["events"] ?? new List<Partido>();
+        var matches = data["events"] ?? new List<Partido>();
+
+        // Asignar odds aleatorios a cada partido
+        var random = new Random();
+        foreach (var match in matches)
+        {
+            match.Odds = (decimal)(random.NextDouble() * (5.0 - 1.5) + 1.5); // Odds entre 1.5 y 5.0
+        }
+
+        return matches;
     }
 
 }
